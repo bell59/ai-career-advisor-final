@@ -96,7 +96,9 @@ with st.sidebar:
     st.write("This app helps analytics students connect career goals, skills, and course planning.")
     st.metric("Dataset rows", len(df))
     st.write("Dataset types:")
-    st.dataframe(df["type"].value_counts().reset_index().rename(columns={"index": "type", "type": "count"}), hide_index=True)
+    type_counts = df["type"].value_counts().reset_index()
+    type_counts.columns = ["type", "count"]
+    st.dataframe(type_counts)
     st.write("Try prompts like:")
     st.code("I want to become a data analyst")
     st.code("Python")
